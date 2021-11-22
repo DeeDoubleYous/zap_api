@@ -1,0 +1,116 @@
+App 25754 output: internal/modules/cjs/loader.js:638
+App 25754 output:     throw err;
+App 25754 output:     ^
+App 25754 output: Error: Cannot find module '/home/dw470/zap_api/app.js'
+App 25754 output:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:636:15)
+App 25754 output:     at Function.Module._load (internal/modules/cjs/loader.js:562:25)
+App 25754 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 25754 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 25754 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 25754 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 25754 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 25754 output:     at Object.<anonymous> (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:133:1)
+App 25754 output:     at Module._compile (internal/modules/cjs/loader.js:778:30)
+App 25754 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 27113 output: /home/dw470/zap_api/app.js:1
+App 27113 output: import express from 'express';
+App 27113 output:        ^^^^^^^
+App 27113 output: SyntaxError: Unexpected identifier
+App 27113 output:     at Module._compile (internal/modules/cjs/loader.js:723:23)
+App 27113 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 27113 output:     at Module.load (internal/modules/cjs/loader.js:653:32)
+App 27113 output:     at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+App 27113 output:     at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+App 27113 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 27113 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 27113 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 27113 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 27113 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 28674 output: /home/dw470/zap_api/app.js:1
+App 28674 output: import express from 'express';
+App 28674 output:        ^^^^^^^
+App 28674 output: SyntaxError: Unexpected identifier
+App 28674 output:     at Module._compile (internal/modules/cjs/loader.js:723:23)
+App 28674 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 28674 output:     at Module.load (internal/modules/cjs/loader.js:653:32)
+App 28674 output:     at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+App 28674 output:     at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+App 28674 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 28674 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 28674 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 28674 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 28674 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 5648 output: /home/dw470/zap_api/app.js:1
+App 5648 output: import express from 'express';
+App 5648 output:        ^^^^^^^
+App 5648 output: SyntaxError: Unexpected identifier
+App 5648 output:     at Module._compile (internal/modules/cjs/loader.js:723:23)
+App 5648 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 5648 output:     at Module.load (internal/modules/cjs/loader.js:653:32)
+App 5648 output:     at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+App 5648 output:     at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+App 5648 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 5648 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 5648 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 5648 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 5648 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 11452 output: /home/dw470/zap_api/app.js:1
+App 11452 output: import express from 'express';
+App 11452 output:        ^^^^^^^
+App 11452 output: SyntaxError: Unexpected identifier
+App 11452 output:     at Module._compile (internal/modules/cjs/loader.js:723:23)
+App 11452 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 11452 output:     at Module.load (internal/modules/cjs/loader.js:653:32)
+App 11452 output:     at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+App 11452 output:     at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+App 11452 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 11452 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 11452 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 11452 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 11452 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 9782 output: App is running on http://localhost:8080
+App 12380 output: /home/dw470/zap_api/app.js:10
+App 12380 output: import express from 'express';
+App 12380 output:        ^^^^^^^
+App 12380 output: SyntaxError: Unexpected identifier
+App 12380 output:     at Module._compile (internal/modules/cjs/loader.js:723:23)
+App 12380 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 12380 output:     at Module.load (internal/modules/cjs/loader.js:653:32)
+App 12380 output:     at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+App 12380 output:     at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+App 12380 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 12380 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 12380 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 12380 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 12380 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 13031 output: App is running on http://localhost:8080
+App 21872 output: App is running on http://localhost:8080
+App 8272 output: App is running on http://localhost:8080
+App 9451 output: App is running on http://localhost:8080
+App 11330 output: App is running on http://localhost:8080
+App 23057 output: /home/dw470/zap_api/app.js:10
+App 23057 output: import express from 'express';
+App 23057 output:        ^^^^^^^
+App 23057 output: SyntaxError: Unexpected identifier
+App 23057 output:     at Module._compile (internal/modules/cjs/loader.js:723:23)
+App 23057 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+App 23057 output:     at Module.load (internal/modules/cjs/loader.js:653:32)
+App 23057 output:     at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+App 23057 output:     at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+App 23057 output:     at Module.require (internal/modules/cjs/loader.js:692:17)
+App 23057 output:     at Module.require (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:80:25)
+App 23057 output:     at require (internal/modules/cjs/helpers.js:25:18)
+App 23057 output:     at loadApplication (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:243:2)
+App 23057 output:     at setupEnvironment (/opt/cpanel/ea-ruby27/root/usr/share/passenger/helper-scripts/node-loader.js:214:2)
+App 23604 output: App is running on http://localhost:8080
+App 25021 output: App is running on http://localhost:8080
+App 13966 output: App is running on http://localhost:8080
+App 16759 output: App is running on http://localhost:8080
+App 19158 output: App is running on http://localhost:8080
+App 6039 output: App is running on http://localhost:8080
+App 5918 output: App is running on http://localhost:8080
+App 19993 output: App is running on http://localhost:8080
+App 26185 output: App is running on http://localhost:8080
+App 7024 output: App is running on http://localhost:8080
+App 10516 output: App is running on http://localhost:8080
+App 5443 output: App is running on http://localhost:8080
