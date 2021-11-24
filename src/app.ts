@@ -3,8 +3,8 @@ import multer from 'multer';
 import bodyParser from 'body-parser';
 
 import { handleIdGet, handleListGet } from './requestHandlers/handleGets.js';
-import { handlePost } from './requestHandlers/handlePosts.js';
-import { handleDelete } from './requestHandlers/handleDeletes.js';
+import { handlePost, handleUpdates } from './requestHandlers/handlePosts.js';
+import { handleDelete} from './requestHandlers/handleDeletes.js';
 import { makeDatePath, makeProperName } from './tools/imageUtils.js';
 
 const app = express();
@@ -35,9 +35,8 @@ app.get('/zap_api', async (req, res) => {
         if(data) res.json(data);
         else res.end();
     }else{
-        // res.status(400);
-        // res.end();
-        res.send(`this isn't what I wanted`);
+        res.status(400);
+        res.end();
     }
 });
 
@@ -65,10 +64,10 @@ app.post('/zap_api', upload.single('pangolinImage'), async (req, res) => {
 });
 
 app.post('/zap_api/update', async (req, res) => {
-    // const {status, data} = await handleUpdates(req);
-    // res.status(status);
-    // if(data) res.json(data);
-    // else res.end();
+    const {status, data} = await handleUpdates(req);
+    res.status(status);
+    if(data) res.json(data);
+    else res.end();
 })
 
 app.delete('/zap_api', async (req, res) => {
