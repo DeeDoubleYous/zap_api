@@ -1,6 +1,5 @@
 import express from 'express';
 import multer from 'multer';
-import bodyParser from 'body-parser';
 
 import { handleIdGet, handleListGet } from './requestHandlers/handleGets.js';
 import { handlePost, handleUpdates } from './requestHandlers/handlePosts.js';
@@ -25,7 +24,6 @@ const upload = multer({storage: fileStorageEngine});
 //Defining the tools that should be used to understand the information provided
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(bodyParser());
 
 //Defining the routing and the requests 
 app.get('/zap_api', async (req, res) => {
