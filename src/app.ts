@@ -1,10 +1,10 @@
 import express from 'express';
 import multer from 'multer';
 
-import { handleIdGet, handleListGet } from './requestHandlers/handleGets.js';
-import { handlePost, handleUpdates } from './requestHandlers/handlePosts.js';
-import { handleDelete} from './requestHandlers/handleDeletes.js';
-import { makeDatePath, makeProperName } from './tools/imageUtils.js';
+import { handleIdGet, handleListGet } from './requestHandlers/handleGets';
+import { handlePost, handleUpdates } from './requestHandlers/handlePosts';
+import { handleDelete} from './requestHandlers/handleDeletes';
+import { makeDatePath, makeProperName } from './tools/imageUtils';
 
 const app = express();
 
@@ -55,14 +55,14 @@ app.get('/zap_api/public/images/:date/:file', async (req, res) => {
 })
 
 app.post('/zap_api', upload.single('pangolinImage'), async (req, res) => {
-    const {status, data} = await handlePost(req);
+    const {status, data} = await handlePost(req, res);
     res.status(status);
     if(data) res.json(data);
     else res.end();
 });
 
 app.post('/zap_api/update', upload.single('updatedImage'), async (req, res) => {
-    const {status, data} = await handleUpdates(req, res);
+    const {status, data} = await handleUpdates(req);
     res.status(status);
     if(data) res.json(data);
     else res.end();

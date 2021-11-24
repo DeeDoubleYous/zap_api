@@ -6,7 +6,7 @@ import { executeQuery } from "../tools/databaseLookup";
  * @param req 
  * @returns The status of the request and id of the inserted item.
  */
-export const handlePost = async (req: Request) => {
+export const handlePost = async (req: Request, res: Response) => {
     let status = 500, data: {id: number} | null = null;
     try{
         if(req.body.time && req.file && req.body.isDead && req.body.location){
@@ -35,6 +35,8 @@ export const handlePost = async (req: Request) => {
         }
     }catch(e){
         console.error(e);
+        res.status(500);
+        res.send(e);
     }
     return {status, data}
 };
@@ -44,7 +46,7 @@ export const handlePost = async (req: Request) => {
  * @param req 
  * @returns The status of the request and the id of the affected data
  */
-export const handleUpdates = async (req: Request, res: Response) => {
+export const handleUpdates = async (req: Request) => {
     let status = 500, data = null;
 
     try{
@@ -82,7 +84,6 @@ export const handleUpdates = async (req: Request, res: Response) => {
         }
     }catch(e){
         console.error(e);
-        res.send(e);
     }
 
     return {status, data};
