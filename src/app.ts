@@ -61,8 +61,8 @@ app.post('/zap_api', upload.single('pangolinImage'), async (req, res) => {
     else res.end();
 });
 
-app.post('/zap_api/update', async (req, res) => {
-    const {status, data} = await handleUpdates(req);
+app.post('/zap_api/update', upload.single('updatedImage'), async (req, res) => {
+    const {status, data} = await handleUpdates(req, res);
     res.status(status);
     if(data) res.json(data);
     else res.end();

@@ -44,12 +44,12 @@ export const handlePost = async (req: Request) => {
  * @param req 
  * @returns The status of the request and the id of the affected data
  */
-export const handleUpdates = async (req: Request) => {
+export const handleUpdates = async (req: Request, res: Response) => {
     let status = 500, data = null;
 
     try{
-        if(req.body.id && req.body.time && req.file && req.body.originalUrl && req.body.isDead && req.body.location){
-            const id = req.body.id, time = req.body.time, isDead = req.body.isDead, location = req.body.location;
+        if(req.body.id && req.body.time && req.file && req.body.isDead && req.body.location){
+            const id = req.body.id, imageUrl = req.file.path, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
 
             let deathType = null, note = null;
 
@@ -61,9 +61,9 @@ export const handleUpdates = async (req: Request) => {
                 note = req.body.note;
             }
 
-            const sql = `UPDATE PangolinStore SET time = ?, isDead = ?, location = ?${deathType?', deathType = ?':''}${note?', note = ?':''} WHERE id = ?`;
+            const sql = `UPDATE PangolinStore SET time = ?, imageUrl= ?, isDead = ?, location = ?${deathType?', deathType = ?':''}${note?', note = ?':''} WHERE id = ?`;
 
-            let params = [time,  isDead, location];
+            let params = [time, imageUrl, isDead, location];
 
             deathType&&params.push(deathType);
             note&&params.push(note);
@@ -82,6 +82,7 @@ export const handleUpdates = async (req: Request) => {
         }
     }catch(e){
         console.error(e);
+        res.send(e);
     }
 
     return {status, data};
