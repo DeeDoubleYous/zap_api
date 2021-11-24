@@ -1,18 +1,31 @@
 import express from 'express';
-import upload from 'express-fileupload';
+import multer from 'multer';
+import bodyParser from 'body-parser';
 
 import { handleIdGet, handleListGet } from './requestHandlers/handleGets.js';
-import { handlePost, handleUpdates } from './requestHandlers/handlePosts.js';
+import { handlePost } from './requestHandlers/handlePosts.js';
 import { handleDelete } from './requestHandlers/handleDeletes.js';
+import { makeDatePath, makeProperName } from './tools/imageUtils.js';
 
 const app = express();
 
 const port = 8080;
 
+const fileStorageEngine = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, `./public/images`);
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${makeProperName(file.originalname)}`);
+    }
+});
+
+const upload = multer({storage: fileStorageEngine});
+
 //Defining the tools that should be used to understand the information provided
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(upload({createParentPath: true}));
+app.use(bodyParser());
 
 //Defining the routing and the requests 
 app.get('/zap_api', async (req, res) => {
@@ -44,7 +57,7 @@ app.get('/zap_api/public/images/:date/:file', async (req, res) => {
     }
 })
 
-app.post('/zap_api', async (req, res) => {
+app.post('/zap_api', upload.single('pangolinImage'), async (req, res) => {
     const {status, data} = await handlePost(req);
     res.status(status);
     if(data) res.json(data);
@@ -52,10 +65,10 @@ app.post('/zap_api', async (req, res) => {
 });
 
 app.post('/zap_api/update', async (req, res) => {
-    const {status, data} = await handleUpdates(req);
-    res.status(status);
-    if(data) res.json(data);
-    else res.end();
+    // const {status, data} = await handleUpdates(req);
+    // res.status(status);
+    // if(data) res.json(data);
+    // else res.end();
 })
 
 app.delete('/zap_api', async (req, res) => {

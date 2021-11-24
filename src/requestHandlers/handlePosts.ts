@@ -1,6 +1,5 @@
-import { Request } from "express";
+import { Request, Response } from "express";
 import { executeQuery } from "../tools/databaseLookup";
-import { updateImage, uploadImage } from "../tools/imageStore";
 
 /**
  * Handles creating the data on the database so that it doesn't have to be done in the app.js file.
@@ -10,8 +9,8 @@ import { updateImage, uploadImage } from "../tools/imageStore";
 export const handlePost = async (req: Request) => {
     let status = 500, data: {id: number} | null = null;
     try{
-        if(req.body.time && req.files?.pangolinImage && req.body.isDead && req.body.location){
-            const imageUrl = await uploadImage(req.files.pangolinImage),time = req.body.time, isDead = req.body.isDead, location = req.body.location;
+        if(req.body.time && req.file && req.body.isDead && req.body.location){
+            const imageUrl = req.file.path, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
             
             let deathType = null, note = null; 
             if(req.body.deathType) deathType = req.body.deathType;
@@ -45,47 +44,47 @@ export const handlePost = async (req: Request) => {
  * @param req 
  * @returns The status of the request and the id of the affected data
  */
-export const handleUpdates = async (req: Request) => {
-    let status = 500, data = null;
+// export const handleUpdates = async (req: Request) => {
+//     let status = 500, data = null;
 
-    try{
-        if(req.body.id && req.body.time && req.files?.updatedImage && req.body.originalUrl && req.body.isDead && req.body.location){
-            const id = req.body.id, time = req.body.time, isDead = req.body.isDead, location = req.body.location;
+//     try{
+//         if(req.body.id && req.body.time && req.files?.pangolinImage && req.body.originalUrl && req.body.isDead && req.body.location){
+//             const id = req.body.id, time = req.body.time, isDead = req.body.isDead, location = req.body.location;
 
-            let deathType = null, note = null;
+//             let deathType = null, note = null;
 
-            if(req.body.deathType){
-                deathType = req.body.deathType;
-            }
+//             if(req.body.deathType){
+//                 deathType = req.body.deathType;
+//             }
 
-            if(req.body.note){
-                note = req.body.note;
-            }
+//             if(req.body.note){
+//                 note = req.body.note;
+//             }
 
-            const sql = `UPDATE PangolinStore SET time = ?, isDead = ?, location = ?${deathType?', deathType = ?':''}${note?', note = ?':''} WHERE id = ?`;
+//             const sql = `UPDATE PangolinStore SET time = ?, isDead = ?, location = ?${deathType?', deathType = ?':''}${note?', note = ?':''} WHERE id = ?`;
 
-            let params = [time,  isDead, location];
+//             let params = [time,  isDead, location];
 
-            deathType&&params.push(deathType);
-            note&&params.push(note);
+//             deathType&&params.push(deathType);
+//             note&&params.push(note);
 
-            params.push(id);
+//             params.push(id);
 
-            const result = await executeQuery(sql, params);
+//             const result = await executeQuery(sql, params);
 
-            if('affectedRows' in result){
-                status = 201;
-                data={id:id}
-            }
+//             if('affectedRows' in result){
+//                 status = 201;
+//                 data={id:id}
+//             }
 
-            await updateImage(req.files.updatedImage, req.body.originalUrl);
+//             await updateImage(req.files.updatedImage, req.body.originalUrl);
 
-        }else{
-            status = 204;
-        }
-    }catch(e){
-        console.error(e);
-    }
+//         }else{
+//             status = 204;
+//         }
+//     }catch(e){
+//         console.error(e);
+//     }
 
-    return {status, data};
-};
+//     return {status, data};
+// };
