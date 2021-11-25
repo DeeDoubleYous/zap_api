@@ -5,6 +5,7 @@ import { handleIdGet, handleListGet } from './requestHandlers/handleGets';
 import { handlePost, handleUpdates } from './requestHandlers/handlePosts';
 import { handleDelete} from './requestHandlers/handleDeletes';
 import { makeDatePath, makeProperName } from './tools/imageUtils';
+import { rmSync } from 'fs';
 
 const app = express();
 
@@ -39,17 +40,20 @@ app.get('/zap_api', async (req, res) => {
 });
 
 app.get('/zap_api/list', async (req, res) => {
-    const {status, data} = await handleListGet(req);
+    const {status, data} = await handleListGet(req, res);
     res.status(status);
     if(data) res.json(data);
-    else res.end();
+    else res.send('you loose');
 });
 
-app.get('/zap_api/public/images/:date/:file', async (req, res) => {
+app.get('/zap_api/public/images/:file', async (req, res) => {
+    console.log(__dirname);
     try{
-        res.sendFile(`${__dirname}/public/images/${req.params.date}/${req.params.file}`);
+        res.sendFile(`${__dirname}/public/images/${req.params.file}`);
         res.status(200);
     }catch(e){
+        res.status(500);
+        res.send(e);
         console.error(e);
     }
 })

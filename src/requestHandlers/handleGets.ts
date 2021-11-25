@@ -1,5 +1,5 @@
 import { IPangolinRecord } from "../interfaces";
-import { Request } from "express";
+import { Request, Response } from "express";
 import { executeQuery } from "../tools/databaseLookup";
 
 /**
@@ -15,6 +15,7 @@ export const handleIdGet = async (req: Request) => {
         const result = await executeQuery(query, [id]);
 
         if(result){
+            console.log(result);
             status = 200;
             data = JSON.parse(JSON.stringify(result));
         } else{
@@ -32,31 +33,20 @@ export const handleIdGet = async (req: Request) => {
  * @param req 
  * @returns The status of the request and a list of items from the database
  */
-export const handleListGet = async (req: Request) => {
+export const handleListGet = async (req: Request, res:Response) => {
     let status = 500, data: IPangolinRecord[] | null = null;
     try{
-        if(req.params.order){
-            const order = req.params.order;
+        const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore LIMIT 100`;
+        
+        const result = await executeQuery(sql, []);
 
-            const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore ORDER BY ? LIMIT 10`;
-            const result = await executeQuery(sql, [order]);
-
-            if(result){
-                status = 200;
-                data = JSON.parse(JSON.stringify(result));
-            }
-        }else{
-            const sql = `SELECT id, time, imageUrl, isDead, deathType, not, location FROM PangolinStore LIMIT 10`;
-            
-            const result = await executeQuery(sql, []);
-
-            if(result){
-                status = 200;
-                data = JSON.parse(JSON.stringify(result));
-            }
+        if(result){
+            status = 200;
+            data = JSON.parse(JSON.stringify(result));
         }
     }catch(e){
         console.error(e);
+        res.send(e);
     }
     return {status, data};
 };

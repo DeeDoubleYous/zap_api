@@ -10,7 +10,7 @@ export const handlePost = async (req: Request, res: Response) => {
     let status = 500, data: {id: number} | null = null;
     try{
         if(req.body.time && req.file && req.body.isDead && req.body.location){
-            const imageUrl = req.file.path, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
+            const imageUrl = `${req.file.destination}/${req.file.filename}`, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
             
             let deathType = null, note = null; 
             if(req.body.deathType) deathType = req.body.deathType;
@@ -51,7 +51,7 @@ export const handleUpdates = async (req: Request) => {
 
     try{
         if(req.body.id && req.body.time && req.file && req.body.isDead && req.body.location){
-            const id = req.body.id, imageUrl = req.file.path, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
+            const id = req.body.id, imageUrl = req.file.destination, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
 
             let deathType = null, note = null;
 
