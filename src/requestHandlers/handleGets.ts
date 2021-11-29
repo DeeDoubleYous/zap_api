@@ -36,13 +36,41 @@ export const handleIdGet = async (req: Request) => {
 export const handleListGet = async (req: Request, res:Response) => {
     let status = 500, data: IPangolinRecord[] | null = null;
     try{
-        const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore LIMIT 100`;
-        
-        const result = await executeQuery(sql, []);
+        if(req.query.isDead){
 
-        if(result){
-            status = 200;
-            data = JSON.parse(JSON.stringify(result));
+            const performListGet = async (isDead: string) => {
+                const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore WHERE isDead = ?`;
+
+                const result = await executeQuery(sql, [isDead]);
+
+                if(result){
+                    status = 200;
+                    data = JSON.parse(JSON.stringify(result));
+                }
+            };
+
+            switch(req.query.isDead){
+                case 'true':
+                case '1':
+                    await performListGet('1');
+                    break;
+                case 'false':
+                case '0':
+                    await performListGet('0');
+                    break;
+                default:
+                    status = 400;
+            }
+            
+        }else{
+            const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore`;
+        
+            const result = await executeQuery(sql, []);
+
+            if(result){
+                status = 200;
+                data = JSON.parse(JSON.stringify(result));
+            }
         }
     }catch(e){
         console.error(e);

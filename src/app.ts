@@ -4,8 +4,7 @@ import multer from 'multer';
 import { handleIdGet, handleListGet } from './requestHandlers/handleGets';
 import { handlePost, handleUpdates } from './requestHandlers/handlePosts';
 import { handleDelete} from './requestHandlers/handleDeletes';
-import { makeDatePath, makeProperName } from './tools/imageUtils';
-import { rmSync } from 'fs';
+import { makeProperName } from './tools/imageUtils';
 
 const app = express();
 
@@ -43,7 +42,7 @@ app.get('/zap_api/list', async (req, res) => {
     const {status, data} = await handleListGet(req, res);
     res.status(status);
     if(data) res.json(data);
-    else res.send('you loose');
+    else res.end();
 });
 
 app.get('/zap_api/public/images/:file', async (req, res) => {
@@ -79,7 +78,8 @@ app.delete('/zap_api', async (req, res) => {
 });
 
 app.put('/zap_api', (req, res) => {
-    res.send('I am the one and only');
+    res.status(404);
+    res.end();
 });
 
 //Starting up
