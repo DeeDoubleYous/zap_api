@@ -23,5 +23,6 @@ jobs:
 
     - name: Build
       run: |
+        npm install typescript
         npm install
         npx webpack
