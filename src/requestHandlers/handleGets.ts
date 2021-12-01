@@ -15,7 +15,6 @@ export const handleIdGet = async (req: Request) => {
         const result = await executeQuery(query, [id]);
 
         if(result){
-            console.log(result);
             status = 200;
             data = JSON.parse(JSON.stringify(result));
         } else{
