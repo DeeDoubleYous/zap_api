@@ -38,7 +38,7 @@ export const handleListGet = async (req: Request, res:Response) => {
         if(req.query.limit){
             const limit = req.query.limit;
 
-            const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore LIMIT ?`;
+            const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore ORDER BY time DESC LIMIT ?`;
 
             const result = await executeQuery(sql, [limit]) as IPangolinRecord[];
 
