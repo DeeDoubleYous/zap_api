@@ -12,15 +12,15 @@ export const handlePost = async (req: Request, res: Response) => {
         if(req.body.time && req.file && req.body.isDead && req.body.location){
             const imageUrl = `${req.file.destination}/${req.file.filename}`, time = req.body.time, isDead = req.body.isDead == 'true' ? 1 : 0, location = req.body.location;
             
-            let deathType = null, note = null; 
-            if(req.body.deathType) deathType = req.body.deathType;
+            let deathId = null, note = null; 
+            if(req.body.deathId) deathId = req.body.deathId;
             if(req.body.note) note = req.body.note;
 
-            const sql = `INSERT INTO PangolinStore (time, imageUrl, isDead, location${deathType ? ', deathType':''} ${note ? ', note':''}) VALUES(?, ?, ?, ? ${deathType ? ', ?':''} ${note ? ', ?':''})`;
-            
+            const sql = `INSERT INTO PangolinStore (time, imageUrl, isDead, location${deathId ? ', deathID':''} ${note ? ', note':''}) VALUES(?, ?, ?, ? ${deathId ? ', ?':''} ${note ? ', ?':''})`;
+
             let params = [time, imageUrl, isDead, location];
 
-            deathType && params.push(deathType);
+            deathId && params.push(deathId);
             note && params.push(note);
 
             const result = await executeQuery(sql, params)

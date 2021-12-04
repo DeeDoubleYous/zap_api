@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 
-import { handleIdGet, handleListGet } from './requestHandlers/handleGets';
+import { handleDeathTypeGet, handleIdGet, handleListGet } from './requestHandlers/handleGets';
 import { handlePost, handleUpdates } from './requestHandlers/handlePosts';
 import { handleDelete} from './requestHandlers/handleDeletes';
 import { makeProperName } from './tools/imageUtils';
@@ -46,7 +46,6 @@ app.get('/zap_api/list', async (req, res) => {
 });
 
 app.get('/zap_api/public/images/:file', async (req, res) => {
-    console.log(__dirname);
     try{
         res.sendFile(`${__dirname}/public/images/${req.params.file}`);
         res.status(200);
@@ -55,7 +54,15 @@ app.get('/zap_api/public/images/:file', async (req, res) => {
         res.send(e);
         console.error(e);
     }
-})
+});
+
+app.get('/zap_api/deathTypes', async (req, res) => {
+    const {status, data} = await handleDeathTypeGet(req, res);
+    res.status(status);
+    if(data) res.json(data);
+    else res.end();
+});
+
 
 app.post('/zap_api', upload.single('pangolinImage'), async (req, res) => {
     const {status, data} = await handlePost(req, res);

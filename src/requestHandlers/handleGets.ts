@@ -1,4 +1,4 @@
-import { IPangolinRecord } from "../interfaces";
+import { IDeathType, IPangolinRecord } from "../interfaces";
 import { Request, Response } from "express";
 import { executeQuery } from "../tools/databaseLookup";
 
@@ -11,7 +11,7 @@ export const handleIdGet = async (req: Request) => {
     let status = 500, data: IPangolinRecord | null = null;
     try{
         const id = req.query.id;
-        const query = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore WHERE id = ?`;
+        const query = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps INNER JOIN deathTypes dt ON ps.deathId = dt.deathID WHERE id = ?`;
         const result = await executeQuery(query, [id]);
 
         if(result){
@@ -32,13 +32,13 @@ export const handleIdGet = async (req: Request) => {
  * @param req 
  * @returns The status of the request and a list of items from the database
  */
-export const handleListGet = async (req: Request, res:Response) => {
+export const handleListGet = async (req: Request, res: Response) => {
     let status = 500, data: IPangolinRecord[] | null = null;
     try{
         if(req.query.limit){
             const limit = req.query.limit;
 
-            const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore ORDER BY time DESC LIMIT ?`;
+            const sql = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps INNER JOIN DeathTypes dt ON ps.DeathId = dt.DeathId ORDER BY time DESC LIMIT ?`;
 
             const result = await executeQuery(sql, [limit]) as IPangolinRecord[];
 
@@ -47,7 +47,7 @@ export const handleListGet = async (req: Request, res:Response) => {
                 data = result;
             }
         }else{
-            const sql = `SELECT id, time, imageUrl, isDead, deathType, note, location FROM PangolinStore`;
+            const sql = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps INNER JOIN DeathTypes dt ON ps.DeathId = dt.DeathId`;
 
             const result = await executeQuery(sql, []) as IPangolinRecord[];
 
@@ -62,3 +62,25 @@ export const handleListGet = async (req: Request, res:Response) => {
     }
     return {status, data};
 };
+
+/***
+ * Fetches the data types from the database
+ * @returns The status of the request and the requested data
+ */
+export const handleDeathTypeGet = async (req: Request, res: Response) => {
+    let status = 500, data: IDeathType[] | null = null;
+    try{
+        const sql = 'SELECT deathId, deathName FROM DeathTypes';
+
+        const result = await executeQuery(sql, []);
+
+        if(result){
+            status = 200;
+            data = result as IDeathType[];
+        }
+    }catch(e){
+        console.error(e);
+        res.send(e);
+    }
+    return {status, data};
+}
