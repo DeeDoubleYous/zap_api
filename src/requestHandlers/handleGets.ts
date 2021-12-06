@@ -38,7 +38,7 @@ export const handleListGet = async (req: Request, res: Response) => {
         if(req.query.limit){
             const limit = req.query.limit;
 
-            const sql = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps INNER JOIN DeathTypes dt ON ps.DeathId = dt.DeathId ORDER BY time DESC LIMIT ?`;
+            const sql = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps LEFT JOIN DeathTypes dt ON ps.DeathId = dt.DeathId ORDER BY time DESC LIMIT ?`;
 
             const result = await executeQuery(sql, [limit]) as IPangolinRecord[];
 
@@ -47,7 +47,7 @@ export const handleListGet = async (req: Request, res: Response) => {
                 data = result;
             }
         }else{
-            const sql = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps INNER JOIN DeathTypes dt ON ps.DeathId = dt.DeathId`;
+            const sql = `SELECT id, time, imageUrl, isDead, deathName, note, location FROM PangolinStore ps LEFT JOIN DeathTypes dt ON ps.DeathId = dt.DeathId`;
 
             const result = await executeQuery(sql, []) as IPangolinRecord[];
 
