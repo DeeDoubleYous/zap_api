@@ -1,11 +1,13 @@
 import mysql from 'mysql2/promise';
+import { ICredentials } from '../interfaces';
+import { readFileSync } from 'fs';
 
-const credentials = {
-    host: 'dw470.brighton.domains',
-    user: 'dw470_database',
-    password: 'YF}C{aL!P4*B',
-    database: 'dw470_ci609_zap'
+const databaseLookUp = ():ICredentials => {
+    return JSON.parse(readFileSync('./credentials.json', 'utf-8')) as ICredentials;
 };
+
+let credentials: ICredentials = databaseLookUp();
+
 
 export const executeQuery = async (sql: string, params: any[]) => {
     const connection = await mysql.createConnection(credentials);
