@@ -6,8 +6,7 @@ const databaseLookUp = ():ICredentials => {
     return JSON.parse(readFileSync('./credentials.json', 'utf-8')) as ICredentials;
 };
 
-let credentials: ICredentials = databaseLookUp();
-
+const credentials: ICredentials = databaseLookUp();
 
 export const executeQuery = async (sql: string, params: any[]) => {
     const connection = await mysql.createConnection(credentials);
