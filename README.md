@@ -18,7 +18,7 @@ Parameters
 |------------|------|----------|------|
 | id         | int  | Yes      |The id of the pangolin record. |
 
-Returns
+Returns returns a single record
 | Value | Type | Note|
 |-------|------|-----|
 | id    | int  | The id of the record. |
@@ -39,7 +39,15 @@ Parameters
 | deathid?   | int | No | Optional, should only be uploaded if isDead is true and exist in the deathTypes list|
 | note?       | string | No | Optional |
 
-Returns
+Returns a single record
 | Value | Type | Note |
 |-------|------|------|
 | id | int | the id of the uploaded record |
+
+### GET dw470.brighton.domains/zap_api/deathTypes
+
+Returns as a list of records
+| Value | Type | Note | 
+|-------|------|------|
+| deathId | int | The id you should use when posting new records |
+| deathName | string | The display name for the input/output of records |
