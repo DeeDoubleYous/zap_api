@@ -14,9 +14,9 @@ This is the api for uploading new findings of pangolins and for retreving the li
 
 
 Parameters
-| Parameters | Type | Note |
-|------------|------|------|
-| id         | int  | The id of the pangolin record. |
+| Parameters | Type | Required | Note |
+|------------|------|----------|------|
+| id         | int  | Yes      |The id of the pangolin record. |
 
 Returns
 | Value | Type | Note|
@@ -30,14 +30,14 @@ Returns
 ### POST dw470.brighton.domains/zap_api
 
 Parameters
-| Parameters | Type | Note |
-|------------|-----|-------|
-| time       | datetime| The date and time of the record upload |
-| image      | Image| The Image that should be uploaded along with the rest of the record |
-| isDead     | boolean | |
-| location   | string | Should be the stringified JSON object with lat and lon entries |
-| deathid?   | int | Optional, should only be uploaded if isDead is true and exist in the deathTypes list|
-| note?       | string | Optional |
+| Parameters | Type | Required | Note |
+|------------|------|----------|-------|
+| time       | datetime| Yes | The date and time of the record upload |
+| image      | Image| Yes | The Image that should be uploaded along with the rest of the record |
+| isDead     | boolean | Yes | |
+| location   | string | Yes | Should be the stringified JSON object with lat and lon entries |
+| deathid?   | int | No | Optional, should only be uploaded if isDead is true and exist in the deathTypes list|
+| note?       | string | No | Optional |
 
 Returns
 | Value | Type | Note |
