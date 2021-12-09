@@ -117,4 +117,4 @@ Your database will have two tables with this design
 ![image](https://user-images.githubusercontent.com/7958479/145321135-5f5b82e6-eabb-400f-883e-6154b6fd4854.png)
 
 with the deathTypes table populated with the desired deathtypes.
-You won't be able to run this against the exising database as the images are stored locally to the server app and adding new records which point only to local files will cause issue.
+You won't be able to run this against the exising database as the images are stored locally to the server app and adding new records which point only to local files will cause issue. You will need to make the public/images directory in the directory where you deploy your app.js file into, multer is not good at creating these folders.
