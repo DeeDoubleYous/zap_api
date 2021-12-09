@@ -50,7 +50,7 @@ app.get('/zap_api/public/images/:file', async (req, res) => {
         res.sendFile(`${__dirname}/public/images/${req.params.file}`);
         res.status(200);
     }catch(e){
-        res.status(500);
+        res.status(404);
         res.send(e);
         console.error(e);
     }

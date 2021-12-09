@@ -76,7 +76,7 @@ export const handleUpdates = async (req: Request) => {
 
             if('affectedRows' in result){
                 status = 201;
-                data={id:id}
+                data={id:id};
             }
 
         }else{
