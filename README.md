@@ -101,6 +101,8 @@ Parameters
 |------------|-------|------|
 | id         | number |     |
 
+##### This will not delete the image from the server! That can only be done from the server.
+
 ## Running the zap_api yourself
 After cloning the repository, you'll need to run `npm install` then you can build the app with `webpack`. You'll find the app file in dist as app.js. For the app to run propeliy you'll need to provide a credentials.json file which will look like this 
 ```
@@ -115,3 +117,4 @@ Your database will have two tables with this design
 ![image](https://user-images.githubusercontent.com/7958479/145321135-5f5b82e6-eabb-400f-883e-6154b6fd4854.png)
 
 with the deathTypes table populated with the desired deathtypes.
+You won't be able to run this against the exising database as the images are stored locally to the server app and adding new records which point only to local files will cause issue.
