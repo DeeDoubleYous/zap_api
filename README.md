@@ -101,7 +101,7 @@ Parameters
 |------------|-------|------|
 | id         | number |     |
 
-##### This will not delete the image from the server! That can only be done from the server.
+##### This will not delete the image from the server! That can only be done from the server ftp!
 
 ## Running the zap_api yourself
 After cloning the repository, you'll need to run `npm install` then you can build the app with `webpack`. You'll find the app file in dist as app.js. For the app to run propeliy you'll need to provide a credentials.json file which will look like this 
